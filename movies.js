@@ -43,7 +43,7 @@ let findMovie = () => {
                     <p><strong>Plot:</strong>${data.Plot}</p>
                     </div>
                     `
-                    
+
                 } else {
                     result.innerHTML = `<h3 class='msg'>${data.Error}</h3>`
                 }
@@ -54,10 +54,10 @@ let findMovie = () => {
     }
 };
 searchBtn.addEventListener('click', findMovie)
-movieNameRef.addEventListener("keydown", function(event) {
+movieNameRef.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-      event.preventDefault(); 
-      findMovie();
+        event.preventDefault();
+        findMovie();
     }
-  });
+});
 window.addEventListener('load', findMovie)

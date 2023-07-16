@@ -1,17 +1,19 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
-body{
+
+body {
     height: 100vh;
     background-image: url(./images/welcomePage.jpeg);
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
     background-position: center;
 }
-.wrapper{
+
+.wrapper {
     background-color: rgba(255, 255, 255, 0.9);
     width: 75%;
     margin: 0 auto;
@@ -19,9 +21,10 @@ body{
     margin-top: 2em;
     height: 11em;
     border-radius: 1em;
-    
+
 }
-h1{
+
+h1 {
     text-align: center;
     font-weight: bolder;
     font-size: 32px;
@@ -30,20 +33,20 @@ h1{
     border-radius: 0.4em;
     padding: 0.2em;
 }
-ul{
+
+ul {
     list-style: none;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    
+
 }
-a{
+
+a {
     text-decoration: none;
     font-size: 22px;
     font-weight: bold;
     color: black;
 }
 
-@media screen and (max-width: 600px) {
-
-}
+@media screen and (max-width: 600px) {}
