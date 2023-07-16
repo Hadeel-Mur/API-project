@@ -28,29 +28,31 @@ let findBook = () => {
 };
 
 function displayData(data) {
-
     result.innerHTML = '';
-    data.items.map((book) => {
+
+    data.items.forEach((book) => {
         const cover = book.volumeInfo.imageLinks?.thumbnail || "";
         const { title, authors, publisher, publishedDate, description, language, pageCount } = book.volumeInfo;
-        result.innerHTML = ''
-        result.innerHTML += `
-    <div class="book-info">
-      <div>
-        <h2>${title}</h2>
-        <p><strong>Authors:</strong> ${authors ? authors.join(', ') : 'Unknown'}</p>
-        <p><strong>Publisher:</strong> ${publisher ? publisher : 'Unknown'}</p>
-        <p><strong>Published Date:</strong> ${publishedDate ? publishedDate : 'Unknown'}</p>
-        <p><strong>language:</strong> ${language ? language : 'No language available'}</p>
-        <p><strong>pageCount:</strong> ${pageCount ? pageCount : 'No pageCount available'}</p>
-        <p><strong>Description:</strong> ${description ? description : 'No description available'}</p>
-        
-      </div>
-      <img class="book-cover" src= "${cover ? cover : 'No image available'}">
-      </div>
-    `;
+
+        const bookInfo = document.createElement('div');
+        bookInfo.classList.add('book-info');
+        bookInfo.innerHTML = `
+            <div>
+                <h2>${title ? title : 'Unknown'}</h2>
+                <p><strong>Authors:</strong> ${authors ? authors.join(', ') : 'Unknown'}</p>
+                <p><strong>Publisher:</strong> ${publisher ? publisher : 'Unknown'}</p>
+                <p><strong>Published Date:</strong> ${publishedDate ? publishedDate : 'Unknown'}</p>
+                <p><strong>Language:</strong> ${language ? language : 'No language available'}</p>
+                <p><strong>Page Count:</strong> ${pageCount ? pageCount : 'No pageCount available'}</p>
+                <p><strong>Description:</strong> ${description ? description : 'No description available'}</p>
+            </div>
+            <img class="book-cover" src="${cover ? cover : 'No image available'}">
+        `;
+
+        result.appendChild(bookInfo);
     });
 }
+
 
 searchBtn.addEventListener('click', findBook);
 bookNameRef.addEventListener("keydown", function (event) {
