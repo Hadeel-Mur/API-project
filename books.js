@@ -1,34 +1,40 @@
+import {
+    bookNameRef,
+    searchBtn2,
+    result2
+} from './constants.js'
+
 const key = 'AIzaSyCzK4xsLEdS-bbCshmI_kdo9AFcgnm1-1Y'
 
-const bookNameRef = document.getElementById('book-name');
-const searchBtn = document.getElementById('search-btn-b');
-const result = document.getElementById('dataContainer');
 
 let findBook = () => {
-    let bookName = bookNameRef.value;
+    let bookName = bookInput.value;
     const url = `https://www.googleapis.com/books/v1/volumes?q=${bookName}&
   &apikey=${key}`;
     if (bookName.trim().length <= 0) {
-        result.innerHTML = `<h2 class='msg'> Please Enter A Book Name</h2>`;
+        const searchResult2 = document.getElementById(result2)
+        searchResult2.innerHTML = `<h2 class='msg'> Please Enter A Book Name</h2>`;
     } else {
         fetch(url)
             .then((Response) => Response.json())
             .then((data) => {
                 if (data.Response = 'true') {
+                    
                     displayData(data);
                     // console.log(data)
                 } else {
-                    result.innerHTML = `<h3 class='msg'>No results found!</h3>`;
+                    searchResult2.innerHTML = `<h3 class='msg'>No results found!</h3>`;
                 }
             })
             .catch(() => {
-                result.innerHTML = `<h3 class='msg'>Something went wrong!</h3>`;
+                searchResult2.innerHTML = `<h3 class='msg'>Something went wrong!</h3>`;
             });
     }
 };
 
 function displayData(data) {
-    result.innerHTML = '';
+    const searchResult2 = document.getElementById(result2)
+    searchResult2.innerHTML = '';
 
     data.items.forEach((book) => {
         const cover = book.volumeInfo.imageLinks?.thumbnail || "";
@@ -49,13 +55,14 @@ function displayData(data) {
             <img class="book-cover" src="${cover ? cover : 'No image available'}">
         `;
 
-        result.appendChild(bookInfo);
+        searchResult2.appendChild(bookInfo);
     });
 }
 
-
-searchBtn.addEventListener('click', findBook);
-bookNameRef.addEventListener("keydown", function (event) {
+const searchButton = document.getElementById(searchBtn2)
+searchButton.addEventListener('click', findBook);
+const bookInput = document.getElementById(bookNameRef)
+bookInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
         findBook();

@@ -1,22 +1,28 @@
+
+import {
+    movieNameRef,
+    searchBtn,
+    result
+} from './constants.js'
+
 const key = 'http://www.omdbapi.com/?i=tt3896198&apikey=a7018fe4'
 
-const movieNameRef = document.getElementById('movie-name')
-const searchBtn = document.getElementById('search-btn')
-const result = document.getElementById('result')
 
 let findMovie = () => {
-    let movieName = movieNameRef.value;
+    let movieName = movieInput.value;
     let url = `https://www.omdbapi.com/?t=${movieName}&
     apikey=${key}`
     if (movieName.trim().length <= 0) {
-        result.innerHTML = `<h2 class='msg'> Please Enter A Movie Name</h2>`
+        const searchResult = document.getElementById(result)
+        searchResult.innerHTML = `<h2 class='msg'> Please Enter A Movie Name</h2>`
     } else {
         fetch(url)
             .then((Response) => Response.json())
             .then((data) => {
                 if (data.Response) {
-                    result.innerHTML = ''
-                    result.innerHTML = `
+                    const searchResult = document.getElementById(result)
+                    searchResult.innerHTML = ''
+                    searchResult.innerHTML = `
                     <div class='info'>
                     <h2>${data.Title ? data.Title : 'Unknown'}</h2>
                     <div class='info-1'>
@@ -45,16 +51,18 @@ let findMovie = () => {
                     `
 
                 } else {
-                    result.innerHTML = `<h3 class='msg'>${data.Error}</h3>`
+                    searchResult.innerHTML = `<h3 class='msg'>${data.Error}</h3>`
                 }
             })
             .catch(() => {
-                result.innerHTML = `<h3 class='msg'>Something went wrong!</h3>`
+                searchResult.innerHTML = `<h3 class='msg'>Something went wrong!</h3>`
             })
     }
 };
-searchBtn.addEventListener('click', findMovie)
-movieNameRef.addEventListener("keydown", function (event) {
+const searchButton = document.getElementById(searchBtn)
+searchButton.addEventListener('click', findMovie)
+const movieInput = document.getElementById(movieNameRef)
+movieInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
         findMovie();
