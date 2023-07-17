@@ -19,14 +19,16 @@ let findBook = () => {
             .then((Response) => Response.json())
             .then((data) => {
                 if (data.Response = 'true') {
-                    
+
                     displayData(data);
                     // console.log(data)
                 } else {
+                    const searchResult2 = document.getElementById(result2)
                     searchResult2.innerHTML = `<h3 class='msg'>No results found!</h3>`;
                 }
             })
             .catch(() => {
+                const searchResult2 = document.getElementById(result2)
                 searchResult2.innerHTML = `<h3 class='msg'>Something went wrong!</h3>`;
             });
     }

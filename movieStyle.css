@@ -12,6 +12,16 @@ body {
     background-size: cover;
     background-position: center;
 }
+.home{
+    display: block;
+    color:#ffffff;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.5em;
+    background-color: #141414;
+    width: 4em;
+    border-bottom-right-radius: 0.3rem;
+}
 
 h1 {
     font-size: 1.3em;

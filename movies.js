@@ -19,12 +19,12 @@ let findMovie = () => {
         fetch(url)
             .then((Response) => Response.json())
             .then((data) => {
-                if (data.Response) {
+                if (data.Response = 'true') {
                     const searchResult = document.getElementById(result)
                     searchResult.innerHTML = ''
                     searchResult.innerHTML = `
                     <div class='info'>
-                    <h2>${data.Title ? data.Title : 'Unknown'}</h2>
+                    <h2>${data.Title ? data.Title : `${error}`}</h2>
                     <div class='info-1'>
                     <div>
                     
@@ -38,7 +38,7 @@ let findMovie = () => {
                         <p><strong>Awards: </strong>${data.Awards ? data.Awards : 'Unknown'}</p>
                         <p><strong>Released: </strong>${data.Released ? data.Released : 'Unknown'}</p>
                         <p><strong>Cast:</strong>${data.Actors ? data.Actors : 'Unknown'}</p>
-                        <div class='genre'><strong>${data.Genre ? data.Genre : 'Unknown'}</strong></div>
+                        <div class='genre'><strong>${data.Genre ? data.Genre : 'Unknown'} </strong></div>
                     </div>
                     
                       
@@ -51,14 +51,18 @@ let findMovie = () => {
                     `
 
                 } else {
-                    searchResult.innerHTML = `<h3 class='msg'>${data.Error}</h3>`
+                    const searchResult = document.getElementById(result)
+                    searchResult.innerHTML = `<h3>Something went wrong!</h3>`
                 }
             })
             .catch(() => {
+                const searchResult = document.getElementById(result)
                 searchResult.innerHTML = `<h3 class='msg'>Something went wrong!</h3>`
+
             })
     }
 };
+
 const searchButton = document.getElementById(searchBtn)
 searchButton.addEventListener('click', findMovie)
 const movieInput = document.getElementById(movieNameRef)
